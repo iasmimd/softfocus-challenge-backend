@@ -19,8 +19,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-ce%&5b$00e=b&qx1hywmn3m0)&4@_6*y8pj$!ziy%spex_xr!8"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -47,7 +45,7 @@ THIRD_PARTY_APPS = [
 ]
 
 
-MY_APPS = ["analysts"]
+MY_APPS = ["analysts", "registrations"]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + MY_APPS
 
