@@ -19,7 +19,7 @@ class Registration(models.Model):
     farmer_cpf = models.IntegerField()
     tillage_type = models.CharField(max_length=50)
     harvest_date = models.DateField()
-    cause = models.CharField(choices=Cause_Options.choices)
+    cause = models.CharField(max_length=15, choices=Cause_Options.choices)
     last_modified = models.DateField(auto_now=True)
 
     analyst = models.ForeignKey(

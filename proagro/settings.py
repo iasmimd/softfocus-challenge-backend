@@ -12,6 +12,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+import os
+import dotenv
+
+dotenv.load_dotenv()
+SECRET_KEY = os.getenv('SECRET_KEY')
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -41,7 +47,6 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
-    "drf_spectacular",
 ]
 
 
@@ -84,10 +89,14 @@ WSGI_APPLICATION = "proagro.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+  "default": {
+      "ENGINE": "django.db.backends.postgresql",
+      "NAME": os.getenv("POSTGRES_DB"),
+      "USER": os.getenv("POSTGRES_USER"),
+      "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
+      "HOST": "127.0.0.1",
+      "PORT": 5432,
+  }
 }
 
 
@@ -131,3 +140,5 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+AUTH_USER_MODEL = 'analysts.Analyst'
