@@ -1,7 +1,6 @@
 from django.shortcuts import get_object_or_404
 
 from analysts.models import Analyst
-from analysts.serializers import AnalystSerializer
 
 from .models import Registration
 from .serializers import RegistrationSerializer
@@ -21,3 +20,11 @@ class RegistrationView(generics.ListCreateAPIView):
         analyst = get_object_or_404(Analyst, pk=self.kwargs["pk"])
 
         return Registration.objects.filter(analyst=analyst).order_by("id")
+
+
+class RegistrationDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Registration.objects.all()
+    serializer_class = RegistrationSerializer
+
+
+

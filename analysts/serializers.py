@@ -4,8 +4,8 @@ from .models import Analyst
 
 class AnalystSerializer(serializers.ModelSerializer):
     class Meta:
-        model: Analyst
-        fields = ["email", "password"]
+        model = Analyst
+        fields = ["username", "email", "password"]
         extra_kwargs = {"password": {"write_only": True}}
 
     def create(self, validated_data):

@@ -41,12 +41,12 @@ DJANGO_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
 ]
 
 THIRD_PARTY_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
+    "cpf_field",
 ]
 
 
@@ -142,3 +142,5 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = 'analysts.Analyst'
+
+
