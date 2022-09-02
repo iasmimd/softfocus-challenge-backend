@@ -4,6 +4,8 @@ from cpf_field.models import CPFField
 
 import uuid
 
+from geopy.geocoders import Nominatim
+
 
 class Cause_Options(models.TextChoices):
     EXCESSIVE_RAIN = "Chuva excessiva"
@@ -19,7 +21,8 @@ class Registration(models.Model):
     farmer_name = models.CharField(max_length=128)
     farmer_email = models.EmailField(unique=False)
     farmer_cpf = CPFField("cpf")
-    location = ""
+    latitude = models.DecimalField(max_digits=9, decimal_places=6)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6)
     tillage_type = models.CharField(max_length=50)
     harvest_date = models.DateField()
     cause = models.CharField(max_length=15, choices=Cause_Options.choices)

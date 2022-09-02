@@ -3,8 +3,11 @@ asttokens==2.0.8
 backcall==0.2.0
 decorator==5.1.1
 Django==4.1
+django-cpf==0.1.0
 djangorestframework==3.13.1
 executing==1.0.0
+geographiclib==1.52
+geopy==2.2.0
 ipdb==0.13.9
 ipython==8.4.0
 jedi==0.18.1
