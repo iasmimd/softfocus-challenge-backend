@@ -47,6 +47,7 @@ THIRD_PARTY_APPS = [
     "rest_framework.authtoken",
     "cpf_field",
     "drf_spectacular",
+    "corsheaders",
 ]
 
 
@@ -62,6 +63,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+	'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = "proagro.urls"
@@ -160,3 +162,6 @@ if DATABASE_URL:
     db_from_env = dj_database_url.config(
         default=DATABASE_URL, conn_max_age=500, ssl_require=True)
     DATABASES['default'].update(db_from_env)
+
+
+CORS_ALLOW_ALL_ORIGINS=True
