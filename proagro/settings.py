@@ -15,6 +15,8 @@ from pathlib import Path
 import os
 import dotenv
 
+import dj_database_url
+
 dotenv.load_dotenv()
 SECRET_KEY = os.getenv('SECRET_KEY')
 
@@ -27,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -47,6 +49,7 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "cpf_field",
+    "drf_spectacular",
 ]
 
 
@@ -143,4 +146,22 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = 'analysts.Analyst'
 
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
 
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'proago',
+    'DESCRIPTION': 'a system to manage lost comunications of farmers',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
+
+DATABASE_URL = os.environ.get('DATABASE_URL')
+
+if DATABASE_URL:
+    db_from_env = dj_database_url.config(
+        default=DATABASE_URL, conn_max_age=500, ssl_require=True)
+    DATABASES['default'].update(db_from_env)
+
+ALLOWED_HOSTS = ['proagro-api-iasmim.herokuapp.com', 'localhost']

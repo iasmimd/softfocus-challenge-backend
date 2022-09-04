@@ -1,0 +1,376 @@
+openapi: 3.0.3
+info:
+  title: proago
+  version: 1.0.0
+  description: a system to manage lost comunications of farmers
+paths:
+  /api/analysts/:
+    post:
+      operationId: analysts_create
+      tags:
+      - analysts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Analyst'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Analyst'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Analyst'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Analyst'
+          description: ''
+  /api/login/:
+    post:
+      operationId: login_create
+      tags:
+      - login
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthToken'
+          description: ''
+  /api/registrations/:
+    get:
+      operationId: registrations_list
+      tags:
+      - registrations
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Registration'
+          description: ''
+  /api/registrations/{id}/:
+    post:
+      operationId: registrations_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - registrations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Registration'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Registration'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Registration'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Registration'
+          description: ''
+  /api/registrations/detail/{id}/:
+    get:
+      operationId: registrations_detail_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - registrations
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Registration'
+          description: ''
+    put:
+      operationId: registrations_detail_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - registrations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Registration'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Registration'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Registration'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Registration'
+          description: ''
+    patch:
+      operationId: registrations_detail_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - registrations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedRegistration'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedRegistration'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedRegistration'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Registration'
+          description: ''
+    delete:
+      operationId: registrations_detail_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - registrations
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    Analyst:
+      type: object
+      properties:
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        password:
+          type: string
+          writeOnly: true
+          maxLength: 128
+      required:
+      - password
+      - username
+    AuthToken:
+      type: object
+      properties:
+        username:
+          type: string
+          writeOnly: true
+        password:
+          type: string
+          writeOnly: true
+        token:
+          type: string
+          readOnly: true
+      required:
+      - password
+      - token
+      - username
+    CauseEnum:
+      enum:
+      - Chuva excessiva
+      - Geada
+      - Granizo
+      - Seca
+      - Vendaval
+      - Raio
+      type: string
+    PatchedRegistration:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        farmer_name:
+          type: string
+          maxLength: 128
+        farmer_email:
+          type: string
+          format: email
+          maxLength: 254
+        latitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+        longitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+        address:
+          type: string
+          readOnly: true
+        farmer_cpf:
+          type: string
+          title: Cpf
+          maxLength: 14
+        tillage_type:
+          type: string
+          maxLength: 50
+        harvest_date:
+          type: string
+          format: date
+        cause:
+          $ref: '#/components/schemas/CauseEnum'
+        last_modified:
+          type: string
+          format: date
+          readOnly: true
+        analyst_id:
+          type: string
+          format: uuid
+          readOnly: true
+    Registration:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        farmer_name:
+          type: string
+          maxLength: 128
+        farmer_email:
+          type: string
+          format: email
+          maxLength: 254
+        latitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+        longitude:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,6})?$
+        address:
+          type: string
+          readOnly: true
+        farmer_cpf:
+          type: string
+          title: Cpf
+          maxLength: 14
+        tillage_type:
+          type: string
+          maxLength: 50
+        harvest_date:
+          type: string
+          format: date
+        cause:
+          $ref: '#/components/schemas/CauseEnum'
+        last_modified:
+          type: string
+          format: date
+          readOnly: true
+        analyst_id:
+          type: string
+          format: uuid
+          readOnly: true
+      required:
+      - address
+      - analyst_id
+      - cause
+      - farmer_cpf
+      - farmer_email
+      - farmer_name
+      - harvest_date
+      - id
+      - last_modified
+      - latitude
+      - longitude
+      - tillage_type
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
