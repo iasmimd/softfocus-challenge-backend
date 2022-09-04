@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['api-proagro.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['api-proagro.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
