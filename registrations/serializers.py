@@ -62,9 +62,9 @@ class RegistrationSerializer(serializers.ModelSerializer):
         location = f'{validated_data["latitude"]}, {validated_data["longitude"]}'
         location_address = geolocator.reverse(location)
 
-        if not location_address: 
-            raise serializers.ValidationError({'location': 'Insira um valor válido para latitude e longitude'})
+        if not location_address:
+            raise serializers.ValidationError(
+                {"location": "Insira um valor válido para latitude e longitude"}
+            )
 
         return Registration.objects.create(**validated_data)
-
-

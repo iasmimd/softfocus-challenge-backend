@@ -7,10 +7,11 @@ from .serializers import RegistrationSerializer
 
 from rest_framework import generics
 
+
 class ResgitrationListView(generics.ListAPIView):
     queryset = Registration.objects.all()
     serializer_class = RegistrationSerializer
-    
+
 
 class RegistrationCreateView(generics.CreateAPIView):
     serializer_class = RegistrationSerializer
@@ -23,6 +24,3 @@ class RegistrationCreateView(generics.CreateAPIView):
 class RegistrationDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Registration.objects.all()
     serializer_class = RegistrationSerializer
-
-
-
