@@ -40,6 +40,8 @@ class RegistrationSerializer(serializers.ModelSerializer):
         location = f"{obj.latitude}, {obj.longitude}"
         location_address = geolocator.reverse(location)
 
+        self.location_validator_error(location_address)
+
         return location_address.address
 
     def get_is_duplicate_registration(self, obj):
@@ -58,13 +60,16 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
                 return False
 
+    def location_validator_error(self, location):
+        if not location:
+            raise serializers.ValidationError(
+                {"location": "Insira um valor válido para latitude e longitude"}
+            )
+
     def create(self, validated_data):
         location = f'{validated_data["latitude"]}, {validated_data["longitude"]}'
         location_address = geolocator.reverse(location)
 
-        if not location_address:
-            raise serializers.ValidationError(
-                {"location": "Insira um valor válido para latitude e longitude"}
-            )
+        self.location_validator_error(location_address)
 
         return Registration.objects.create(**validated_data)
