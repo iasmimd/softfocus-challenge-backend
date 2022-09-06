@@ -13,6 +13,10 @@ Principais tecnologias utilizadas:
 - [GeoPy](https://pypi.org/project/geopy/)
 - [Swagger](https://swagger.io/)
 
+## Frontend da aplicação:
+
+https://softfocus-challenge-frontend-iasmimd.vercel.app/
+
 ## URL base da aplicação:
 
 https://api-proagro.herokuapp.com/api/
@@ -20,6 +24,10 @@ https://api-proagro.herokuapp.com/api/
 # Documentação da API:
 
 ## A API foi separada em duas models, **analista** e **registro de perda**.
+
+## > **Swagger**: documentação
+### `/schema/swagger-ui/`
+---
 
 ## > **Analista**
 
@@ -283,9 +291,6 @@ Vazio
 ```
 204 No Content
 ```
----
-## > **Swagger**
-### `/schema/swagger-ui/`
 ---
 
 # Instruções para rodar localmente:
