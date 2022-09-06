@@ -280,8 +280,12 @@ Vazio
 ```
 204 No Content
 ```
+---
+## > **Swagger**
+### `/schema/swagger-ui/`
+---
 
-<!-- # Instruções:
+# Instruções para rodar localmente:
 
 ### Crie o ambiente virtual
 ```
@@ -302,4 +306,4 @@ pip install -r requirements.txt
 ### Execute as migrações
 ```
 ./manage.py migrate
-``` -->
+```
