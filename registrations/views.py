@@ -3,17 +3,14 @@ from django.shortcuts import get_object_or_404
 from analysts.models import Analyst
 
 from .models import Registration
-from .serializers import RegistrationSerializer, DateLocationError
+from .serializers import RegistrationSerializer
 
 from rest_framework import generics
-from rest_framework.views import  Response
-
-
 
 class ResgitrationListView(generics.ListAPIView):
     queryset = Registration.objects.all()
     serializer_class = RegistrationSerializer
-
+    
 
 class RegistrationCreateView(generics.CreateAPIView):
     serializer_class = RegistrationSerializer

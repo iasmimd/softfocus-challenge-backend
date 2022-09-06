@@ -31,4 +31,3 @@ class Registration(models.Model):
     analyst = models.ForeignKey(
         "analysts.Analyst", on_delete=models.CASCADE, related_name="registrations"
     )
-
