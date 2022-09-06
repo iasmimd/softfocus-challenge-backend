@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['api-proagro.herokuapp.com', 'localhost', '127.0.0.1']
 
@@ -162,7 +162,7 @@ if DATABASE_URL:
     db_from_env = dj_database_url.config(
         default=DATABASE_URL, conn_max_age=500, ssl_require=True)
     DATABASES['default'].update(db_from_env)
-
+    DEBUG = False
 
 CORS_ALLOW_ALL_ORIGINS=True
 
