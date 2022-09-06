@@ -152,6 +152,7 @@ Vazio
     "tillage_type": "Café",
     "harvest_date": "2022-07-01",
     "cause": "Raio",
+  	"is_duplicate_registration": false,
     "last_modified": "2022-09-05",
     "analyst_id": "c2e16b3e-f3cf-4b89-bf65-b3aa3737571d"
   },
@@ -166,6 +167,7 @@ Vazio
     "tillage_type": "Café",
     "harvest_date": "2022-07-01",
     "cause": "Vendaval",
+    "is_duplicate_registration": false,
     "last_modified": "2022-09-06",
     "analyst_id": "94d985f5-9daa-4a47-9042-85a26f38bbeb"
   }
@@ -204,18 +206,19 @@ Content-type: application/json
 
 ```json
 {
-  "id": "6f42461b-4cd1-4072-ba9d-372b43a6d639",
-  "farmer_name": "José da Silva",
-  "farmer_email": "jose@email.com",
-  "latitude": -23.9618,
-  "longitude": -46.3322,
-  "address": "Conversão Rua Doutor Luís Suplicy, Gonzaga, Santos, Região Imediata de Santos, Região Metropolitana da Baixada Santista, Região Geográfica Intermediária de São Paulo, São Paulo, Região Sudeste, 11065-500, Brasil",
-  "farmer_cpf": "482.553.078-85",
-  "tillage_type": "Café",
-  "harvest_date": "2022-07-01",
-  "cause": "Vendaval",
-  "last_modified": "2022-09-06",
-  "analyst_id": "94d985f5-9daa-4a47-9042-85a26f38bbeb"
+	"id": "cc0fb240-df36-4490-919d-85bdbc97c518",
+	"farmer_name": "José da Silva",
+	"farmer_email": "jose@email.com",
+	"latitude": "-23.961800",
+	"longitude": "-46.332200",
+	"address": "Conversão Rua Doutor Luís Suplicy, Gonzaga, Santos, Região Imediata de Santos, Região Metropolitana da Baixada Santista, Região Geográfica Intermediária de São Paulo, São Paulo, Região Sudeste, 11065-500, Brasil",
+	"farmer_cpf": "482.553.078-85",
+	"tillage_type": "Café",
+	"harvest_date": "2022-07-01",
+	"cause": "Vendaval",
+	"is_duplicate_registration": false,
+	"last_modified": "2022-09-06",
+	"analyst_id": "fa57bf75-072b-480e-8699-77da421e88b2"
 }
 ```
 
